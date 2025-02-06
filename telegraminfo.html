@@ -19,10 +19,6 @@
             if (tg.initDataUnsafe.user) {
                 let userId = tg.initDataUnsafe.user.id;
                 let firstName = tg.initDataUnsafe.user.first_name;
-
-                console.log("User ID:", userId);
-                console.log("First Name:", firstName);
-
                 document.getElementById("user-info").innerHTML = `👤 ${firstName} (${userId})`;
             } else {
                 console.log("User not found");
