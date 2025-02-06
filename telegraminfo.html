@@ -10,9 +10,10 @@
 <body>
     <div id="user-info">🔄 กำลังโหลดข้อมูล...</div>
 
+
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        window.onload = function () {
+        window.onload = () => {
             let tg = window.Telegram.WebApp;
 
             if (tg.initDataUnsafe.user) {
@@ -25,6 +26,7 @@
                 document.getElementById("user-info").innerHTML = `👤 ${firstName} (${userId})`;
             } else {
                 console.log("User not found");
+                document.getElementById("user-info").innerHTML = `User not found`;
             }
         };
     </script>
