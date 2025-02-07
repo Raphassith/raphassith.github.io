@@ -10,44 +10,11 @@
 <body>
     <h2>Login with Telegram</h2>
     <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="TheKnowledgeLanternbot"
-        data-size="large"
-        data-auth-url="https://script.google.com/macros/s/AKfycbyXF88DYA8SxbWS-cnEN4EIqtzixrG9KO1sW7G_ovz3tYMEG2Tr_GUk82NtTZ7iw3aK/exec"
-        data-request-access="write">
-        </script>
-
-    <div id="user-info" style="display:none; margin-top: 20px;">
-        <h3>ข้อมูลผู้ใช้</h3>
-        <img id="user-photo" src="" alt="Profile Picture" width="100">
-        <p><strong>ชื่อ:</strong> <span id="user-name"></span></p>
-        <p><strong>Telegram ID:</strong> <span id="user-id"></span></p>
-    </div>
-
-    <script>
-        // ดึงค่าจาก URL เมื่อ Telegram ส่งกลับมา
-        function getQueryParams() {
-            let params = {};
-            let queryString = window.location.search.substring(1);
-            let paramArray = queryString.split("&");
-            paramArray.forEach(param => {
-                let pair = param.split("=");
-                params[pair[0]] = decodeURIComponent(pair[1] || "");
-            });
-            return params;
+        data-size="large" data-onauth="onTelegramAuth(user)" data-request-access="write"></script>
+    <script type="text/javascript">
+        function onTelegramAuth(user) {
+            alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
         }
-
-        // แสดงข้อมูลผู้ใช้บนหน้าเว็บ
-        function displayUserData() {
-            let params = getQueryParams();
-
-            if (params.first_name) {
-                document.getElementById("user-name").innerText = params.first_name;
-                document.getElementById("user-id").innerText = params.id;
-                document.getElementById("user-photo").src = params.photo_url || "https://via.placeholder.com/100";
-                document.getElementById("user-info").style.display = "block";
-            }
-        }
-
-        displayUserData();
     </script>
 </body>
 
