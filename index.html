@@ -1,65 +1,29 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login with Telegram</title>
+    <title>Image Maps</title>
 </head>
 
 <body>
-    <h2>ระบบล็อกอินด้วย Telegram</h2>
-    <div id="user-info">
-        <p>กำลังโหลดข้อมูล...</p>
-    </div>
+    <h2>Image Maps</h2>
+    <p>Click on the computer, the phone, or the cup of coffee to go to a new page and read more about the topic:</p>
+
+    <img src="./photos/workplace.jpeg" alt="Workplace" usemap="#workmap" width="400" height="379">
+
+    <map name="workmap">
+        <area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm">
+        <area shape="rect" coords="290,172,333,250" alt="Phone" href="phone.htm">
+        <area shape="circle" coords="337,300,44" alt="Cup of coffee" href="javascript:myfn()">
+    </map>
+    <a onclick="myfn();">Click</a>
 
     <script>
-        const botId = "7891169932:AAG-yosyQLuvPRf1tszLohOjzYR0fCr1FDA"; // 🔹 ใส่ Telegram Bot ID ของคุณ
-
-        function redirectToTelegram() {
-            window.location.href = `https://oauth.telegram.org/auth?bot_id=${botId}&origin=${encodeURIComponent(window.location.origin)}&embed=1`;
+        function myfn() {
+            alert('hello world;');
         }
-
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            let data = {};
-            params.forEach((value, key) => {
-                data[key] = value;
-            });
-            return data;
-        }
-
-        function saveUserData(userData) {
-            localStorage.setItem("telegram_user", JSON.stringify(userData));
-            window.location.href = "/"; // 🔹 กลับไปหน้าแรกหลังบันทึกข้อมูล
-        }
-
-        function displayUser(user) {
-            document.getElementById("user-info").innerHTML = `
-                <h3>ข้อมูลผู้ใช้</h3>
-                <p><strong>ชื่อ:</strong> ${user.first_name} ${user.last_name || ""}</p>
-                <p><strong>Username:</strong> @${user.username}</p>
-                <img src="${user.photo_url}" alt="Profile Picture" width="100">
-            `;
-        }
-
-        function init() {
-            let user = localStorage.getItem("telegram_user");
-
-            if (user) {
-                user = JSON.parse(user);
-                displayUser(user);
-            } else {
-                const userData = getQueryParams();
-                if (userData.id) {
-                    saveUserData(userData);
-                } else {
-                    redirectToTelegram(); // 🔹 ถ้ายังไม่ได้ล็อกอิน ให้ไปที่ Telegram OAuth
-                }
-            }
-        }
-
-        init(); // 🔹 เรียกใช้งานเมื่อลงหน้าเว็บ
     </script>
 </body>
 
