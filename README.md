@@ -59,4 +59,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [React](https://github.com/facebook/react/blob/main/README.md)  
 - [TensorFlow](https://github.com/tensorflow/tensorflow/blob/master/README.md)  
 
+หากต้องการตัวอย่างที่เหมาะกับโปรเจกต์ของคุณ บอกได้นะครับ! 😊
+
 
